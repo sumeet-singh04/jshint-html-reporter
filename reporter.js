@@ -24,7 +24,7 @@ module.exports = {
             calculateNumberOfFailures();
             var content = getRenderedHTML();
             if(opts.reporterOutput) {
-                if(fs.accessSync(path.join(process.cwd(),opts.reporterOutput), fs.constants.F_OK)) {
+                if(fs.accessSync(path.join(process.cwd(),opts.reporterOutput), fs.F_OK)) {
                     fs.writeFileSync(path.join(process.cwd(),opts.reporterOutput), content)
                 }
             }
