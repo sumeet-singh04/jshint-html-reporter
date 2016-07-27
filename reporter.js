@@ -25,7 +25,7 @@ module.exports = {
             var content = getRenderedHTML();
             if(opts.reporterOutput) {
                 //if(fs.accessSync(path.join(process.cwd(),opts.reporterOutput), fs.F_OK)) {
-                    fs.writeFileSync(path.join(process.cwd(),opts.reporterOutput), content)
+                    fs.appendFileSync(path.join(process.cwd(),opts.reporterOutput), content)
                 //}
             }
             process.stdout.write(content);
