@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    reporter: function (result) {
+    reporter: function (result, data, opts) {
         var fs = require('fs');
         var path = require('path');
 
@@ -22,7 +22,13 @@ module.exports = {
         function init() {
             loadTemplates();
             calculateNumberOfFailures();
-            process.stdout.write(getRenderedHTML());
+            var content = getRenderedHTML();
+            if(opts.reporterOutput) {
+                if(fs.accessSync(path.join(process.cwd(),opts.reporterOutput), fs.constants.F_OK)) {
+                    fs.writeFileSync(path.join(process.cwd(),opts.reporterOutput), content)
+                }
+            }
+            process.stdout.write(content);
         }
 
         function calculateNumberOfFailures() {
